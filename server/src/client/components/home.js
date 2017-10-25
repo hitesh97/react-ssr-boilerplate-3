@@ -4,7 +4,7 @@ const Home = () => {
     return (
         <div>
             <div>I'm the home component</div>
-            <button onClick={() => alert('test this')}>Press Me!</button>
+            <button onClick={() => alert('Testing onclick function')}>Press Me!</button>
         </div>
     );
 };
