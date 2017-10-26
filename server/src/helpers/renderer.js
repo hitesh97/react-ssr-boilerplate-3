@@ -1,9 +1,14 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import Home from '../client/components/home';
+import { StaticRouter } from 'react-router-dom';
+import Routes from '../client/routes';
 
 export default () => {
-    const content = renderToString(<Home />);
+    const content = renderToString(
+        <StaticRouter contex={{}}>
+            <Routes />
+        </StaticRouter>
+    );
     return `
             <html>
             <head></head>
