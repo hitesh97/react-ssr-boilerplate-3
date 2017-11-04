@@ -30,9 +30,8 @@ const mapStateToProps = (state) => {
     };
 };
 
-function loadData() {
-    //load data
-    console.log('loading data');
+function loadData(store) {
+    return store.dispatch(fetchUsers());
 }
 
 export { loadData };

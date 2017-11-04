@@ -36934,9 +36934,8 @@ var mapStateToProps = function mapStateToProps(state) {
     };
 };
 
-function loadData() {
-    //load data
-    console.log('loading data');
+function loadData(store) {
+    return store.dispatch((0, _actions.fetchUsers)());
 }
 
 exports.loadData = loadData;
