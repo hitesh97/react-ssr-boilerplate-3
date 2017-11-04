@@ -30,4 +30,10 @@ const mapStateToProps = (state) => {
     };
 };
 
+function loadData() {
+    //load data
+    console.log('loading data');
+}
+
+export { loadData };
 export default connect(mapStateToProps, { fetchUsers })(UserList);
