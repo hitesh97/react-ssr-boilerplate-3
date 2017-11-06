@@ -15,9 +15,10 @@ app.get('*', (req, res) => {
         return route.loadData ? route.loadData(store) : null;
     });
 
-    console.log(promises);
+    Promise.all(promises).then(() => {
+        res.send(renderer(req, store));
+    });
 
-    res.send(renderer(req, store));
 });
 
 app.listen(3000, () => {
