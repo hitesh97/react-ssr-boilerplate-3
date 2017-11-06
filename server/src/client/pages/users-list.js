@@ -30,6 +30,9 @@ const mapStateToProps = (state) => {
     };
 };
 
+// since we have not yet rendered our app on the backend
+// we need to dispatch the action manually instead of using 
+// the redux connect function
 function loadData(store) {
     return store.dispatch(fetchUsers());
 }
