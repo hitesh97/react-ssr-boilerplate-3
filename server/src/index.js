@@ -6,6 +6,7 @@ import Routes from './client/routes';
 import renderer from './helpers/renderer';
 import createStore from './helpers/createStore';
 
+
 const app = express();
 app.use('/api', proxy('http://react-ssr-api.herokuapp.com', {
     proxyReqOptDecorator: (proxyReqOpts) => {

@@ -1,5 +1,6 @@
 import React, { PureCompoenet } from 'react';
 
+
 const Home = () => {
     return (
         <div>

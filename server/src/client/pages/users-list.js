@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../actions';
 
+
 class UserList extends PureComponent {
 
     componentWillMount() {
