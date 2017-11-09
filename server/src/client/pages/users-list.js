@@ -17,9 +17,11 @@ class UserList extends PureComponent {
 
     render() {
         return (
-            <div>
-                <h1>Users</h1>
-                {this.renderUsers()}
+            <div className="row">
+                <div className="col-md-12">
+                    <h1>Users</h1>
+                    {this.renderUsers()}
+                </div>
             </div>
         );
     }

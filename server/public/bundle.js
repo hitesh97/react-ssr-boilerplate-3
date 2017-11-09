@@ -36877,21 +36877,26 @@ var _header = __webpack_require__(480);
 
 var _header2 = _interopRequireDefault(_header);
 
+var _index = __webpack_require__(175);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App(_ref) {
     var route = _ref.route;
 
-    return _react2.default.createElement(
+    return [_react2.default.createElement(_header2.default, null), _react2.default.createElement(
         'div',
-        null,
-        _react2.default.createElement(_header2.default, null),
+        { className: 'container' },
         (0, _reactRouterConfig.renderRoutes)(route.routes)
-    );
+    )];
 };
 
 exports.default = {
-    component: App
+    component: App,
+    loadData: function loadData(_ref2) {
+        var dispatch = _ref2.dispatch;
+        return dispatch((0, _index.fetchCurrentUser)());
+    }
 };
 
 /***/ }),
@@ -36913,19 +36918,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Home = function Home() {
     return _react2.default.createElement(
-        'div',
-        null,
+        "div",
+        { className: "row" },
         _react2.default.createElement(
-            'div',
-            null,
-            'I\'m the home component'
-        ),
-        _react2.default.createElement(
-            'button',
-            { onClick: function onClick() {
-                    return alert('Testing onclick function');
-                } },
-            'Press Me!'
+            "div",
+            { className: "col-md-12" },
+            _react2.default.createElement(
+                "div",
+                null,
+                "Wellcome"
+            ),
+            _react2.default.createElement(
+                "button",
+                { onClick: function onClick() {
+                        return alert('Testing onclick function');
+                    } },
+                "Press Me!"
+            )
         )
     );
 };
@@ -36993,13 +37002,17 @@ var UserList = function (_PureComponent) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                null,
+                { className: 'row' },
                 _react2.default.createElement(
-                    'h1',
-                    null,
-                    'Users'
-                ),
-                this.renderUsers()
+                    'div',
+                    { className: 'col-md-12' },
+                    _react2.default.createElement(
+                        'h1',
+                        null,
+                        'Users'
+                    ),
+                    this.renderUsers()
+                )
             );
         }
     }]);
@@ -39153,19 +39166,86 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(399);
 
+var _reactRedux = __webpack_require__(166);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function () {
+var Header = function Header(_ref) {
+    var auth = _ref.auth;
+
+
+    var authButton = auth ? _react2.default.createElement(
+        'a',
+        { className: 'btn btn-danger', href: '/api/logout' },
+        'Logout'
+    ) : _react2.default.createElement(
+        'a',
+        { className: 'btn btn-secondary', href: '/api/auth/google' },
+        'Login'
+    );
+
     return _react2.default.createElement(
-        'div',
-        null,
+        'header',
+        { className: 'navbar navbar-expand navbar-dark bg-dark flex-column flex-md-row bd-navbar', style: { marginBottom: '40px' } },
         _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/' },
-            'Home'
+            'div',
+            { className: 'navbar-nav-scroll' },
+            _react2.default.createElement(
+                'ul',
+                { className: 'navbar-nav bd-navbar-nav flex-row' },
+                _react2.default.createElement(
+                    'li',
+                    { className: 'nav-item' },
+                    _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { className: 'nav-link', to: '/' },
+                        'Home'
+                    )
+                ),
+                _react2.default.createElement(
+                    'li',
+                    { className: 'nav-item' },
+                    _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { className: 'nav-link', to: '/users' },
+                        'Users'
+                    )
+                ),
+                _react2.default.createElement(
+                    'li',
+                    { className: 'nav-item' },
+                    _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { className: 'nav-link', to: '/admins' },
+                        'Admins'
+                    )
+                ),
+                _react2.default.createElement(
+                    'li',
+                    { className: 'nav-item' },
+                    _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { className: 'nav-link', to: '/admins' },
+                        'Admins'
+                    )
+                ),
+                _react2.default.createElement(
+                    'li',
+                    { className: 'nav-item' },
+                    authButton
+                )
+            )
         )
     );
 };
+
+var mapStateToProps = function mapStateToProps(_ref2) {
+    var auth = _ref2.auth;
+
+    return { auth: auth };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(Header);
 
 /***/ }),
 /* 481 */
