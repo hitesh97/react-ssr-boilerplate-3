@@ -38226,9 +38226,12 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(115);
 
+var _auth = __webpack_require__(481);
+
 var _users = __webpack_require__(460);
 
 exports.default = (0, _redux.combineReducers)({
+    auth: _auth.reducer,
     users: _users.reducer
 });
 
@@ -39162,6 +39165,33 @@ exports.default = function () {
             'Home'
         )
     );
+};
+
+/***/ }),
+/* 481 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.reducer = undefined;
+
+var _actions = __webpack_require__(175);
+
+var reducer = exports.reducer = function reducer() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    var action = arguments[1];
+
+    switch (action.type) {
+        case _actions.FETCH_CURRENT_USER:
+            return action.payload.data || false;
+
+        default:
+            return state;
+    }
 };
 
 /***/ })
