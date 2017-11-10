@@ -36879,6 +36879,10 @@ var _usersList = __webpack_require__(458);
 
 var _usersList2 = _interopRequireDefault(_usersList);
 
+var _adminsList = __webpack_require__(484);
+
+var _adminsList2 = _interopRequireDefault(_adminsList);
+
 var _ = __webpack_require__(459);
 
 var _2 = _interopRequireDefault(_);
@@ -36891,6 +36895,9 @@ exports.default = [_extends({}, _app2.default, {
         exact: true
     }), _extends({}, _usersList2.default, {
         path: "/users",
+        exact: true
+    }), _extends({}, _adminsList2.default, {
+        path: "/admins",
         exact: true
     }), _extends({}, _2.default)]
 })];
@@ -38259,16 +38266,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var UserList = function (_PureComponent) {
-    _inherits(UserList, _PureComponent);
+var UsersList = function (_PureComponent) {
+    _inherits(UsersList, _PureComponent);
 
-    function UserList() {
-        _classCallCheck(this, UserList);
+    function UsersList() {
+        _classCallCheck(this, UsersList);
 
-        return _possibleConstructorReturn(this, (UserList.__proto__ || Object.getPrototypeOf(UserList)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (UsersList.__proto__ || Object.getPrototypeOf(UsersList)).apply(this, arguments));
     }
 
-    _createClass(UserList, [{
+    _createClass(UsersList, [{
         key: 'componentWillMount',
         value: function componentWillMount() {
             this.props.fetchUsers();
@@ -38298,13 +38305,17 @@ var UserList = function (_PureComponent) {
                         null,
                         'Users'
                     ),
-                    this.renderUsers()
+                    _react2.default.createElement(
+                        'ul',
+                        null,
+                        this.renderUsers()
+                    )
                 )
             );
         }
     }]);
 
-    return UserList;
+    return UsersList;
 }(_react.PureComponent);
 
 var mapStateToProps = function mapStateToProps(state) {
@@ -38322,7 +38333,7 @@ function loadData(store) {
 
 exports.default = {
     loadData: loadData,
-    component: (0, _reactRedux.connect)(mapStateToProps, { fetchUsers: _actions.fetchUsers })(UserList)
+    component: (0, _reactRedux.connect)(mapStateToProps, { fetchUsers: _actions.fetchUsers })(UsersList)
 };
 
 /***/ }),
@@ -39365,6 +39376,102 @@ var reducer = exports.reducer = function reducer() {
         default:
             return state;
     }
+};
+
+/***/ }),
+/* 484 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(115);
+
+var _actions = __webpack_require__(78);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AdminsList = function (_PureComponent) {
+    _inherits(AdminsList, _PureComponent);
+
+    function AdminsList() {
+        _classCallCheck(this, AdminsList);
+
+        return _possibleConstructorReturn(this, (AdminsList.__proto__ || Object.getPrototypeOf(AdminsList)).apply(this, arguments));
+    }
+
+    _createClass(AdminsList, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            this.props.fetchAdmins();
+        }
+    }, {
+        key: 'renderAdmins',
+        value: function renderAdmins() {
+            return this.props.admins.map(function (admin) {
+                return _react2.default.createElement(
+                    'li',
+                    { key: admin.id },
+                    admin.name
+                );
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { className: 'row' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-12' },
+                    _react2.default.createElement(
+                        'h1',
+                        null,
+                        'Admins'
+                    ),
+                    _react2.default.createElement(
+                        'ul',
+                        null,
+                        this.renderAdmins()
+                    )
+                )
+            );
+        }
+    }]);
+
+    return AdminsList;
+}(_react.PureComponent);
+
+var mapStateToProps = function mapStateToProps(state) {
+    return {
+        admins: state.admins
+    };
+};
+
+function loadData(store) {
+    return store.dispatch((0, _actions.fetchAdmins)());
+}
+
+exports.default = {
+    loadData: loadData,
+    component: (0, _reactRedux.connect)(mapStateToProps, { fetchAdmins: _actions.fetchAdmins })(AdminsList)
 };
 
 /***/ })

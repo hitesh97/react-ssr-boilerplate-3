@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchUsers } from '../actions';
 
 
-class UserList extends PureComponent {
+class UsersList extends PureComponent {
 
     componentWillMount() {
         this.props.fetchUsers();
@@ -20,7 +20,7 @@ class UserList extends PureComponent {
             <div className="row">
                 <div className="col-md-12">
                     <h1>Users</h1>
-                    {this.renderUsers()}
+                    <ul>{this.renderUsers()}</ul>
                 </div>
             </div>
         );
@@ -42,5 +42,5 @@ function loadData(store) {
 
 export default {
     loadData,
-    component: connect(mapStateToProps, { fetchUsers })(UserList)
+    component: connect(mapStateToProps, { fetchUsers })(UsersList)
 };
