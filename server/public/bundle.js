@@ -3058,7 +3058,7 @@ Object.defineProperty(exports, "__esModule", {
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-var FETCH_USER = exports.FETCH_USER = 'fetch_users';
+var FETCH_USERS = exports.FETCH_USERS = 'fetch_users';
 var fetchUsers = exports.fetchUsers = function fetchUsers() {
     return function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch, getState, api) {
@@ -3075,7 +3075,7 @@ var fetchUsers = exports.fetchUsers = function fetchUsers() {
 
 
                             dispatch({
-                                type: FETCH_USER,
+                                type: FETCH_USERS,
                                 payload: res
                             });
 
@@ -3124,6 +3124,41 @@ var fetchCurrentUser = exports.fetchCurrentUser = function fetchCurrentUser() {
 
         return function (_x4, _x5, _x6) {
             return _ref2.apply(this, arguments);
+        };
+    }();
+};
+
+var FETCH_ADMINS = exports.FETCH_ADMINS = 'fetch_admins';
+var fetchAdmins = exports.fetchAdmins = function fetchAdmins() {
+    return function () {
+        var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(dispatch, getState, api) {
+            var res;
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+                while (1) {
+                    switch (_context3.prev = _context3.next) {
+                        case 0:
+                            _context3.next = 2;
+                            return api.get('/admins');
+
+                        case 2:
+                            res = _context3.sent;
+
+
+                            dispatch({
+                                type: FETCH_ADMINS,
+                                payload: res
+                            });
+
+                        case 4:
+                        case 'end':
+                            return _context3.stop();
+                    }
+                }
+            }, _callee3, undefined);
+        }));
+
+        return function (_x7, _x8, _x9) {
+            return _ref3.apply(this, arguments);
         };
     }();
 };
@@ -38369,9 +38404,12 @@ var _auth = __webpack_require__(462);
 
 var _users = __webpack_require__(463);
 
+var _admins = __webpack_require__(483);
+
 exports.default = (0, _redux.combineReducers)({
     auth: _auth.reducer,
-    users: _users.reducer
+    users: _users.reducer,
+    admins: _admins.reducer
 });
 
 /***/ }),
@@ -38420,7 +38458,7 @@ var reducer = exports.reducer = function reducer() {
     var action = arguments[1];
 
     switch (action.type) {
-        case _actions.FETCH_USER:
+        case _actions.FETCH_USERS:
             return action.payload.data;
 
         default:
@@ -39301,6 +39339,33 @@ module.exports = function spread(callback) {
   };
 };
 
+
+/***/ }),
+/* 483 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.reducer = undefined;
+
+var _actions = __webpack_require__(78);
+
+var reducer = exports.reducer = function reducer() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    var action = arguments[1];
+
+    switch (action.type) {
+        case _actions.FETCH_ADMINS:
+            return action.payload.data;
+
+        default:
+            return state;
+    }
+};
 
 /***/ })
 /******/ ]);
