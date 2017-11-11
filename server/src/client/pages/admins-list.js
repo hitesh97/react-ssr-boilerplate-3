@@ -17,14 +17,18 @@ class AdminsList extends PureComponent {
         });
     }
 
+    head() {
+        return <Helmet>
+            <title>{`${this.props.admins.length} Admins Loaded`}</title>
+            <meta property="og:title" content="Admins List" />
+        </Helmet>;
+    }
+
     render() {
         return (
             <div className="row">
                 <div className="col-md-12">
-                    <Helmet>
-                        <title>Admins List</title>
-                        <meta property="og:title" content="Admins List" />
-                    </Helmet>
+                    {this.head()}
                     <h1>Admins</h1>
                     <ul>{this.renderAdmins()}</ul>
                 </div>

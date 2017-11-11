@@ -38421,6 +38421,20 @@ var AdminsList = function (_PureComponent) {
             });
         }
     }, {
+        key: 'head',
+        value: function head() {
+            return _react2.default.createElement(
+                _reactHelmet.Helmet,
+                null,
+                _react2.default.createElement(
+                    'title',
+                    null,
+                    this.props.admins.length + ' Admins Loaded'
+                ),
+                _react2.default.createElement('meta', { property: 'og:title', content: 'Admins List' })
+            );
+        }
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -38429,16 +38443,7 @@ var AdminsList = function (_PureComponent) {
                 _react2.default.createElement(
                     'div',
                     { className: 'col-md-12' },
-                    _react2.default.createElement(
-                        _reactHelmet.Helmet,
-                        null,
-                        _react2.default.createElement(
-                            'title',
-                            null,
-                            'Admins List'
-                        ),
-                        _react2.default.createElement('meta', { property: 'og:title', content: 'Admins List' })
-                    ),
+                    this.head(),
                     _react2.default.createElement(
                         'h1',
                         null,
