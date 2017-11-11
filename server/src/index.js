@@ -21,6 +21,12 @@ app.get('*', (req, res) => {
 
     const promises = matchRoutes(Routes, req.path).map(({ route }) => {
         return route.loadData ? route.loadData(store) : null;
+    }).map(promise => {
+        if (promise) {
+            return new Promise((resolve, reject) => {
+                promise.then(resolve).catch(resolve)
+            });
+        }
     });
 
     Promise.all(promises).then(() => {
@@ -30,6 +36,8 @@ app.get('*', (req, res) => {
             res.status(404);
         }
         res.send(content);
+    }).catch(() => {
+        res.send('Something went wrong!ß');
     });
 
 });
