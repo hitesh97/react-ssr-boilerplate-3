@@ -32,9 +32,17 @@ app.get('*', (req, res) => {
     Promise.all(promises).then(() => {
         const context = {};
         const content = renderer(req, store, context);
+
+
+        // if there is a replace (redirect) action in context object
+        if (context.url) {
+            return res.redirect(301, "/");
+        }
+
         if (context.notFound) {
             res.status(404);
         }
+
         res.send(content);
     });
 
