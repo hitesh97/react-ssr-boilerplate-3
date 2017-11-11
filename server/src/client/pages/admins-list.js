@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { fetchAdmins } from '../actions';
 import requireAuth from '../components/hocs/require-auth';
+import { Helmet } from 'react-helmet';
+
 
 class AdminsList extends PureComponent {
 
@@ -19,6 +21,10 @@ class AdminsList extends PureComponent {
         return (
             <div className="row">
                 <div className="col-md-12">
+                    <Helmet>
+                        <title>Admins List</title>
+                        <meta property="og:title" content="Admins List" />
+                    </Helmet>
                     <h1>Admins</h1>
                     <ul>{this.renderAdmins()}</ul>
                 </div>

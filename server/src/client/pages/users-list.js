@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../actions';
+import { Helmet } from 'react-helmet';
 
 
 class UsersList extends PureComponent {
@@ -19,6 +20,10 @@ class UsersList extends PureComponent {
         return (
             <div className="row">
                 <div className="col-md-12">
+                    <Helmet>
+                        <title>Users List</title>
+                        <meta property="og:title" content="Users List" />
+                    </Helmet>
                     <h1>Users</h1>
                     <ul>{this.renderUsers()}</ul>
                 </div>
