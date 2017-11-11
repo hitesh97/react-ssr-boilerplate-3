@@ -36,8 +36,6 @@ app.get('*', (req, res) => {
             res.status(404);
         }
         res.send(content);
-    }).catch(() => {
-        res.send('Something went wrong!ß');
     });
 
 });
