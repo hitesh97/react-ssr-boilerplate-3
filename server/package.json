@@ -4,21 +4,23 @@
   "description": "Server side rendering project",
   "main": "index.js",
   "scripts": {
-    "dev": "npm-run-all --parallel dev:*",
-    "dev:server": "nodemon --watch build --exec \"node build/bundle.js\"",
+    "dev": "npm-run-all --parallel dev:build-client dev:build-server dev:server",
+    "dev:server": "cross-env PORT=3001 nodemon --watch build --exec \"node build/bundle.js\"",
     "dev:build-server": "webpack --config webpack.server.js --watch",
     "dev:build-client": "webpack --config webpack.client.js --watch",
     "clean": "rm -rf node_modules",
     "clean:install": "yarn clean && yarn",
     "build-server": "webpack --config webpack.server.js",
     "build-client": "webpack --config webpack.client.js",
-    "build": "npm-run-all --parallel build-client build-server"
+    "build": "cross-env PORT=3001 npm-run-all --parallel build-client build-server",
+    "start:prod:server": "cross-env PORT=3001 \"node build/bundle.js\""
   },
-  "author": "Farbod Salimi",
+  "author": "Hitesh Khatri",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
     "compression": "1.7.3",
+    "cross-env": "^5.2.0",
     "express": "4.16.3",
     "express-http-proxy": "1.4.0",
     "lodash": "4.17.11",
